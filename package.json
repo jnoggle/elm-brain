@@ -1,14 +1,14 @@
 {
-  "name": "bottles",
+  "name": "elm-brain",
   "version": "0.0.1",
-  "description": "Bottles",
+  "description": "A fork of Joe Andaverde's Bottles repo that implements my version of a brain in elm",
   "main": "server.js",
   "scripts": {
     "test": "grunt test",
     "make-elm": "rimraf 'elm-stuff/build-artifacts' && elm-make elm/Main.elm --output web/public/js/elm-main.js"
   },
-  "repository": "https://github.com/joeandaverde/bottles",
-  "author": "Joe Andaverde",
+  "repository": "https://github.com/jnoggle/elm-brain",
+  "author": "Joe Andaverde, Justin Noggle",
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",

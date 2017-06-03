@@ -29,6 +29,7 @@ type alias BrainTick =
     , speed : Float
     , radar_heading : Float
     , fire_power : Int
+    , turret_heading : Float
     }
 
 
@@ -65,11 +66,20 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case Debug.log "Message: " msg of
         Tick sensors ->
-            let
-                t =
-                    { heading = 0.0, fire_power = 10, speed = 1.0, radar_heading = sensors.radarHeading + 1.0 }
-            in
-                ( "Name here", brainTick t )
+            case (List.head sensors.radar) of
+                Just radarEntry ->
+                    let
+                        t =
+                            { turret_heading = radarEntry.heading, radar_heading = radarEntry.heading, heading = radarEntry.heading, speed = 0, fire_power = 1 }
+                    in
+                        ( "Name here", brainTick t )
+
+                Nothing ->
+                    let
+                        t =
+                            { turret_heading = sensors.radarHeading, heading = sensors.heading + 1.0, fire_power = 0, speed = 1.0, radar_heading = sensors.radarHeading + 1.0 }
+                    in
+                        ( "Name here", brainTick t )
 
 
 
